@@ -1,3 +1,0 @@
-This repository contains projects made using Java programming and is part of my 1 month internship in Virtual Vigilantes.
-
-Task 1 : Basic ATM Simulator
