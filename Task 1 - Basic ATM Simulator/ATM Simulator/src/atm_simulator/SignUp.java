@@ -5,6 +5,8 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
 import com.toedter.calendar.JDateChooser;
+import jdk.nashorn.internal.scripts.JO;
+
 public class SignUp extends JFrame implements ActionListener
 {
     JLabel applicationNo,page1,name,fatherName,dob,email,gender,status,country,pin;
@@ -147,6 +149,7 @@ public class SignUp extends JFrame implements ActionListener
             next.setBounds(600,650,100,40);
             next.setFont(new Font("Arial",Font.BOLD,18));
             add(next);
+            next.addActionListener(this);
         }
         catch (Exception e)
         {
@@ -157,7 +160,82 @@ public class SignUp extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent ae)
     {
-
+        String formNo = "" + randomNo; // converts long to string value
+        String name = nameText.getText();  // gets the value from the textField
+        String fname = fatherText.getText();
+        String dob = ((JTextField)dateChooser.getDateEditor().getUiComponent()).getText();
+        String gender = "";
+        if(male.isSelected())
+        {
+            gender = "male";
+        }
+        else if(female.isSelected())
+        {
+            gender = "female";
+        }
+        String email = emailText.getText();
+        String status = "";
+        if(single.isSelected())
+        {
+            status = "single";
+        }
+        else if(married.isSelected())
+        {
+            status = "married";
+        }
+        else if(other.isSelected())
+        {
+            status = "other";
+        }
+        String country = (String)comboBox.getSelectedItem();
+        String pin = pinText.getText();
+        try
+        {
+            // validation
+            if(name.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Name is required");
+            }
+            else if(fname.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Father name is required");
+            }
+            else if(dob.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Date of birth is required");
+            }
+            else if(gender.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Gender is required");
+            }
+            else if(email.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Email is required");
+            }
+            else if(status.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Marital Status is required");
+            }
+            else if(country.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Country is required");
+            }
+            else if(pin.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Pin Code is required");
+            }
+            else
+            {
+                Conn c = new Conn();
+                String q = "INSERT INTO signup VALUES('"+formNo+"','"+name+"','"+fname+"','"+dob+"'," +
+                        "'"+gender+"','"+email+"','"+status+"','"+country+"','"+pin+"')";  // generates sql insert query
+                c.s.executeUpdate(q);  // executes the query
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void main(String[] args)
