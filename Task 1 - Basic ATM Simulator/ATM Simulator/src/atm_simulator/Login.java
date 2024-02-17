@@ -28,10 +28,12 @@ public class Login extends JFrame implements ActionListener
             l = new JLabel(i3);
             l.setBounds(150,20,100,100);
             add(l);
+
             text = new JLabel("Welcome to ATM");  // creates a label
             text.setBounds(285,55,400,40);  // for aligning
             text.setFont(new Font("Arial",Font.BOLD,38));
             add(text);
+
             cardNo = new JLabel("Card No : ");  // creates a label
             cardNo.setBounds(160,155,180,40);
             cardNo.setFont(new Font("Raleway",Font.BOLD,22));
@@ -40,6 +42,7 @@ public class Login extends JFrame implements ActionListener
             cardTextField.setBounds(280,160,310,35);
             cardTextField.setFont(new Font("Arial",Font.BOLD,18));
             add(cardTextField);
+
             pinNo = new JLabel("PIN : ");  // creates a label
             pinNo.setBounds(160,220,150,40);
             pinNo.setFont(new Font("Raleway",Font.BOLD,22));
@@ -48,22 +51,28 @@ public class Login extends JFrame implements ActionListener
             pinPasswordField.setBounds(280,225,310,35);
             pinPasswordField.setFont(new Font("Arial",Font.BOLD,18));
             add(pinPasswordField);
-            signIn = new JButton("SIGN IN");  // creates a button
-            signIn.setBounds(280,285,90,30);
+
+            signIn = new JButton("Sign In");  // creates a button
+            signIn.setBounds(280,285,90,40);
             signIn.setBackground(Color.BLUE);
             signIn.setForeground(Color.WHITE);
+            signIn.setFont(new Font("Arial",Font.BOLD,16));
             add(signIn);
             signIn.addActionListener(this);
-            clear = new JButton("CLEAR");  // creates a button
-            clear.setBounds(390,285,90,30);
+
+            clear = new JButton("Clear");  // creates a button
+            clear.setBounds(390,285,80,40);
             clear.setBackground(Color.BLUE);
             clear.setForeground(Color.WHITE);
+            clear.setFont(new Font("Arial",Font.BOLD,16));
             add(clear);
             clear.addActionListener(this);
-            signUp = new JButton("SIGN UP");  // creates a button
-            signUp.setBounds(500,285,90,30);
+
+            signUp = new JButton("Sign Up");  // creates a button
+            signUp.setBounds(490,285,100,40);
             signUp.setBackground(Color.BLUE);
             signUp.setForeground(Color.WHITE);
+            signUp.setFont(new Font("Arial",Font.BOLD,16));
             add(signUp);
             signUp.addActionListener(this);
             getContentPane().setBackground(Color.WHITE);  // changes the color of the frame
@@ -86,7 +95,8 @@ public class Login extends JFrame implements ActionListener
         }
         else if(ae.getSource()==signUp)
         {
-
+            SignUp signUpPage = new SignUp();
+            signUpPage.setVisible(true);
         }
     }
     public static void main(String [] args)
