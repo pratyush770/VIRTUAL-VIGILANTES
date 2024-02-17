@@ -5,7 +5,6 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
 import com.toedter.calendar.JDateChooser;
-import jdk.nashorn.internal.scripts.JO;
 
 public class SignUp extends JFrame implements ActionListener
 {
@@ -230,6 +229,8 @@ public class SignUp extends JFrame implements ActionListener
                 String q = "INSERT INTO signup VALUES('"+formNo+"','"+name+"','"+fname+"','"+dob+"'," +
                         "'"+gender+"','"+email+"','"+status+"','"+country+"','"+pin+"')";  // generates sql insert query
                 c.s.executeUpdate(q);  // executes the query
+                setVisible(false);
+                new SignUpTwo(formNo).setVisible(true);  // formNo goes to second class constructor acting as primary key
             }
         }
         catch (Exception e)
