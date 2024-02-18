@@ -78,7 +78,7 @@ public class CashWithdraw extends JFrame implements ActionListener
         {
             JOptionPane.showMessageDialog(null,"PIN is required");
         }
-        else if(pin.length()>4)
+        else if(pin.length() != 4)
         {
             JOptionPane.showMessageDialog(null,"PIN should be of 4 digits");
         }
@@ -91,6 +91,11 @@ public class CashWithdraw extends JFrame implements ActionListener
                 rs = c.s.executeQuery(q);
                 if (rs.next()) {
                     // If there is at least one record with the provided PIN in the database
+                    int withdrawAmount = rs.getInt("amount");
+                    int enteredAmount = Integer.parseInt(amountText.getText());
+                    withdrawAmount = withdrawAmount - enteredAmount;
+                    q = "UPDATE user SET amount = '"+withdrawAmount+"'";
+                    c.s.executeUpdate(q);
                     JOptionPane.showMessageDialog(null, "Cash Withdrawn successfully");
                     setVisible(false);
                     new Login().setVisible(true);

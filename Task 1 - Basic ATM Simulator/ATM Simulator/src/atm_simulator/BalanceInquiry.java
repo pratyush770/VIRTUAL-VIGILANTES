@@ -3,56 +3,44 @@ package atm_simulator;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.sql.*;
 
 public class BalanceInquiry extends JFrame implements ActionListener
 {
-    JLabel total,cardNo;
-    JTextField totalText,cardText;
-    JButton done;
+    JLabel pin;
+    JTextField pinText;
+    JButton check;
+    ResultSet rs;
     BalanceInquiry()
     {
         try
         {
             setTitle("Automated Teller Machine");  // sets the title for the program
-            setSize(800,400);
+            setSize(600,250);
             setLayout(null);
             setVisible(true);
-            setLocation(550,325);
+            setLocation(650,435);
             getContentPane().setBackground(Color.white);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-            total = new JLabel("Total Balance is : ");
-            total.setBounds(120,40,400,40);
-            total.setFont(new Font("Raleway",Font.BOLD,32));
-            add(total);
-            totalText = new JTextField();
-            totalText.setBackground(Color.WHITE);
-            totalText.setForeground(Color.BLACK);
-            totalText.setFont(new Font("Arial",Font.PLAIN,20));
-            totalText.setBounds(400,42,260,40);
-            add(totalText);
-            totalText.setEditable(false);
+            pin = new JLabel("Enter PIN : ");
+            pin.setBounds(60,40,400,40);
+            pin.setFont(new Font("Raleway",Font.BOLD,32));
+            add(pin);
+            pinText = new JTextField();
+            pinText.setBackground(Color.WHITE);
+            pinText.setForeground(Color.BLACK);
+            pinText.setFont(new Font("Arial",Font.PLAIN,20));
+            pinText.setBounds(240,42,280,40);
+            add(pinText);
 
-            cardNo = new JLabel("Card Number : ");
-            cardNo.setBounds(120,150,400,40);
-            cardNo.setFont(new Font("Raleway",Font.BOLD,32));
-            add(cardNo);
-            cardText= new JTextField();
-            cardText.setBackground(Color.WHITE);
-            cardText.setForeground(Color.BLACK);
-            cardText.setFont(new Font("Raleway",Font.PLAIN,20));
-            cardText.setBounds(400,152,260,40);
-            add(cardText);
-            cardText.setText("XXXX-XXXX-XXXX-");
-            cardText.setEditable(false);
-
-            done = new JButton("Done");
-            done.setBackground(Color.BLUE);
-            done.setForeground(Color.WHITE);
-            done.setBounds(560,230,100,40);
-            done.setFont(new Font("Raleway",Font.PLAIN,20));
-            add(done);
-            done.addActionListener(this);
+            check = new JButton("Check Balance");
+            check.setBackground(Color.BLUE);
+            check.setForeground(Color.WHITE);
+            check.setBounds(200,120,200,40);
+            check.setFont(new Font("Raleway",Font.PLAIN,20));
+            add(check);
+            check.addActionListener(this);
         }
         catch (Exception e)
         {
@@ -63,10 +51,42 @@ public class BalanceInquiry extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent ae)
     {
-        if(ae.getSource()==done)
+        try
         {
-            setVisible(false);
-            new Login().setVisible(true);
+            String pin = pinText.getText();
+            if(pin.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"PIN is required");
+            }
+            else if(pin.length() != 4)
+            {
+                JOptionPane.showMessageDialog(null,"PIN should be of 4 digits");
+            }
+            else if(ae.getSource()==check)
+            {
+                try
+                    {
+                        Conn c = new Conn();
+                        String q = "SELECT * FROM user WHERE pin = '"+pin+"'";
+                        rs = c.s.executeQuery(q);
+                        if (rs.next()) {
+                            setVisible(false);
+                            new BalanceInquiry2(pin).setVisible(true);
+                        } else {
+                            // If no record with the provided PIN is found in the database
+                            JOptionPane.showMessageDialog(null, "Invalid PIN");
+                        }
+                }
+                catch (Exception e)
+                {
+                    System.out.println(e.getMessage());
+                }
+
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
         }
     }
 

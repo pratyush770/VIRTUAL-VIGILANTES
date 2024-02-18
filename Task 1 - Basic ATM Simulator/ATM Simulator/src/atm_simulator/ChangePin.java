@@ -78,7 +78,7 @@ public class ChangePin extends JFrame implements ActionListener
         {
             JOptionPane.showMessageDialog(null,"Card Number is required");
         }
-        else if(card.length()>16 || card.length()<16)
+        else if(card.length() != 16)
         {
             JOptionPane.showMessageDialog(null,"Card number should be of 16 digits");
         }
@@ -86,7 +86,7 @@ public class ChangePin extends JFrame implements ActionListener
         {
             JOptionPane.showMessageDialog(null,"PIN is required");
         }
-        else if(oldPin.length()>4)
+        else if(oldPin.length() != 4)
         {
             JOptionPane.showMessageDialog(null,"PIN should be of 4 digits");
         }
@@ -94,7 +94,7 @@ public class ChangePin extends JFrame implements ActionListener
         {
             JOptionPane.showMessageDialog(null,"PIN is required");
         }
-        else if(newPin.length()>4)
+        else if(newPin.length() != 4)
         {
             JOptionPane.showMessageDialog(null,"PIN should be of 4 digits");
         }

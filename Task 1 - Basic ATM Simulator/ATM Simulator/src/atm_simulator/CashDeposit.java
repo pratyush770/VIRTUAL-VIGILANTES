@@ -78,7 +78,7 @@ public class CashDeposit extends JFrame implements ActionListener
         {
             JOptionPane.showMessageDialog(null,"PIN is required");
         }
-        else if(pin.length()>4)
+        else if(pin.length() != 4)
         {
             JOptionPane.showMessageDialog(null,"PIN should be of 4 digits");
         }
@@ -91,6 +91,11 @@ public class CashDeposit extends JFrame implements ActionListener
                 rs = c.s.executeQuery(q);
                 if (rs.next()) {
                     // If there is at least one record with the provided PIN in the database
+                    int depositAmount = rs.getInt("amount");
+                    int enteredAmount = Integer.parseInt(amountText.getText());
+                    depositAmount = depositAmount + enteredAmount;
+                    q = "UPDATE user SET amount = '"+depositAmount+"'";
+                    c.s.executeUpdate(q);
                     JOptionPane.showMessageDialog(null, "Cash deposited successfully");
                     setVisible(false);
                     new Login().setVisible(true);
