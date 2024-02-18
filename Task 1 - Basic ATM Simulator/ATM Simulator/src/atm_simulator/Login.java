@@ -107,7 +107,7 @@ public class Login extends JFrame implements ActionListener
         }
         else if(ae.getSource()==exit)
         {
-            dispose();  // closes the window and stops the program
+            System.exit(0);
         }
     }
     public static void main(String [] args)
