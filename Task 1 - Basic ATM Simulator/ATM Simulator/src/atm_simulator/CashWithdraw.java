@@ -93,6 +93,13 @@ public class CashWithdraw extends JFrame implements ActionListener
                     // If there is at least one record with the provided PIN in the database
                     int withdrawAmount = rs.getInt("amount");
                     int enteredAmount = Integer.parseInt(amountText.getText());
+                    if(enteredAmount%500!=0)
+                    {
+                        JOptionPane.showMessageDialog(null,"Please enter value represented by 500 denomination notes");
+                        amountText.setText("");
+                        pinText.setText("");
+                        return;
+                    }
                     withdrawAmount = withdrawAmount - enteredAmount;
                     q = "UPDATE user SET amount = '"+withdrawAmount+"'";
                     c.s.executeUpdate(q);

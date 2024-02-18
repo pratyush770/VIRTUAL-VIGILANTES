@@ -93,6 +93,13 @@ public class CashDeposit extends JFrame implements ActionListener
                     // If there is at least one record with the provided PIN in the database
                     int depositAmount = rs.getInt("amount");
                     int enteredAmount = Integer.parseInt(amountText.getText());
+                    if(enteredAmount%500!=0)
+                    {
+                        JOptionPane.showMessageDialog(null,"Please enter value represented by 500 denomination notes");
+                        amountText.setText("");
+                        pinText.setText("");
+                        return;
+                    }
                     depositAmount = depositAmount + enteredAmount;
                     q = "UPDATE user SET amount = '"+depositAmount+"'";
                     c.s.executeUpdate(q);
