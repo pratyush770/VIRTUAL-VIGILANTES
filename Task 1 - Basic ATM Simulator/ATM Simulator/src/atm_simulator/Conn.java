@@ -11,11 +11,11 @@ public class Conn
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");  // for loading the driver
-            url = "jdbc:mysql://localhost:3307/bankdb";  // url of the database
+            url = "jdbc:mysql://localhost:3307/atmdb";  // url of the database
             uname = "root";  // username is always root
             pwd = "matsumoto";  // password of the database
             c = DriverManager.getConnection(url,uname,pwd);
-            s=c.createStatement();  // creates the statement
+            s = c.createStatement();
         }
         catch (Exception e)
         {

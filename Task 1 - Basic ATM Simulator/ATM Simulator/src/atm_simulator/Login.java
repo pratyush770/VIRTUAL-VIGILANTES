@@ -93,16 +93,16 @@ public class Login extends JFrame implements ActionListener
         else if(ae.getSource()==deposit)
         {
             setVisible(false);
-            new CashDeposit().setVisible(true);  // goes to withdraw class
+            new CashDeposit().setVisible(true);  // goes to deposit class
         }
         else if(ae.getSource()==pin)
         {
             setVisible(false);
-            new ChangePin().setVisible(true);  // goes to withdraw class
+            new ChangePin().setVisible(true);  // goes to change pin class
         }
         else if(ae.getSource()==exit)
         {
-            dispose();
+            dispose();  // closes the window and stops the program
         }
     }
     public static void main(String [] args)

@@ -3,12 +3,14 @@ package atm_simulator;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.sql.*;
 
 public class CashWithdraw extends JFrame implements ActionListener
 {
     JLabel amount,denomination,pinNo;
     JTextField amountText,pinText;
     JButton withdraw;
+    ResultSet rs;
     CashWithdraw()
     {
         try
@@ -75,6 +77,30 @@ public class CashWithdraw extends JFrame implements ActionListener
         else if(pin.isEmpty())
         {
             JOptionPane.showMessageDialog(null,"PIN is required");
+        }
+        else if(pin.length()>4)
+        {
+            JOptionPane.showMessageDialog(null,"PIN should be of 4 digits");
+        }
+        else
+        {
+            try
+            {
+                Conn c = new Conn();
+                String q = "SELECT * FROM user WHERE pin = '"+pin+"'";
+                rs = c.s.executeQuery(q);
+                if (rs.next()) {
+                    // If there is at least one record with the provided PIN in the database
+                    JOptionPane.showMessageDialog(null, "Cash Withdrawn successfully");
+                } else {
+                    // If no record with the provided PIN is found in the database
+                    JOptionPane.showMessageDialog(null, "Invalid PIN");
+                }
+            }
+            catch (Exception e2)
+            {
+                System.out.println(e2.getMessage());
+            }
         }
     }
 
