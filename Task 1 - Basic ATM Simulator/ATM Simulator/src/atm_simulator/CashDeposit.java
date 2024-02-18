@@ -92,6 +92,8 @@ public class CashDeposit extends JFrame implements ActionListener
                 if (rs.next()) {
                     // If there is at least one record with the provided PIN in the database
                     JOptionPane.showMessageDialog(null, "Cash deposited successfully");
+                    setVisible(false);
+                    new Login().setVisible(true);
                 } else {
                     // If no record with the provided PIN is found in the database
                     JOptionPane.showMessageDialog(null, "Invalid PIN");

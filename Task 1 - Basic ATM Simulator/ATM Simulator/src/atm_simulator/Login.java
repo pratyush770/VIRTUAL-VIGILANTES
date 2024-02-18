@@ -100,6 +100,11 @@ public class Login extends JFrame implements ActionListener
             setVisible(false);
             new ChangePin().setVisible(true);  // goes to change pin class
         }
+        else if(ae.getSource()==inquiry)
+        {
+            setVisible(false);
+            new BalanceInquiry().setVisible(true);
+        }
         else if(ae.getSource()==exit)
         {
             dispose();  // closes the window and stops the program

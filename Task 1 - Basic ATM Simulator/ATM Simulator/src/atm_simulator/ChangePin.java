@@ -112,6 +112,8 @@ public class ChangePin extends JFrame implements ActionListener
                     // Update the PIN in the database
                     q = "UPDATE user SET pin = '" + newPin + "' WHERE card = '" + card + "'";
                     c.s.executeUpdate(q);
+                    setVisible(false);
+                    new Login().setVisible(true);
                 }
                 else {
                     // If no record with the provided PIN is found in the database
