@@ -6,10 +6,8 @@ import java.awt.event.*;
 public class Login extends JFrame implements ActionListener
 {
     // initialize all the components
-    JButton signIn,clear,signUp;
-    JLabel l,text,cardNo,pinNo;
-    JTextField cardTextField;
-    JPasswordField pinPasswordField;
+    JButton withdraw,deposit,inquiry,pin,exit;
+    JLabel l,text,select;
     ImageIcon i,i3;
     Image i2;
     public Login()
@@ -17,10 +15,10 @@ public class Login extends JFrame implements ActionListener
         try
         {
             setTitle("Automated Teller Machine");  // sets the title for the program
-            setSize(800,440); // defines the size of the frame
+            setSize(800,600); // defines the size of the frame
             setLayout(null);
             setVisible(true);  // makes the frame visible
-            setLocation(550,300);  // opens the frame at the center of the screen
+            setLocation(550,220);  // opens the frame at the center of the screen
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // closes the window and stops the program
             i = new ImageIcon(ClassLoader.getSystemResource("icons/logo.png"));  // loads the image
             i2 = i.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);  // adjusts the size of the image
@@ -34,47 +32,50 @@ public class Login extends JFrame implements ActionListener
             text.setFont(new Font("Arial",Font.BOLD,38));
             add(text);
 
-            cardNo = new JLabel("Card No : ");  // creates a label
-            cardNo.setBounds(160,155,180,40);
-            cardNo.setFont(new Font("Raleway",Font.BOLD,22));
-            add(cardNo);
-            cardTextField = new JTextField();  // creates a textfield
-            cardTextField.setBounds(280,160,310,35);
-            cardTextField.setFont(new Font("Arial",Font.BOLD,18));
-            add(cardTextField);
+            select = new JLabel("Select a transaction");  // creates a label
+            select.setBounds(250,175,400,40);
+            select.setFont(new Font("Raleway",Font.BOLD,28));
+            add(select);
 
-            pinNo = new JLabel("PIN : ");  // creates a label
-            pinNo.setBounds(160,220,150,40);
-            pinNo.setFont(new Font("Raleway",Font.BOLD,22));
-            add(pinNo);
-            pinPasswordField = new JPasswordField();  // creates a textfield
-            pinPasswordField.setBounds(280,225,310,35);
-            pinPasswordField.setFont(new Font("Arial",Font.BOLD,18));
-            add(pinPasswordField);
+            withdraw = new JButton("Cash withdraw");
+            withdraw.setBounds(50,285,220,40);
+            withdraw.setFont(new Font("Arial",Font.PLAIN,20));
+            withdraw.setBackground(Color.blue);
+            withdraw.setForeground(Color.white);
+            add(withdraw);
+            withdraw.addActionListener(this);
 
-            signIn = new JButton("Sign In");  // creates a button
-            signIn.setBounds(280,285,90,40);
-            signIn.setBackground(Color.BLUE);
-            signIn.setForeground(Color.WHITE);
-            signIn.setFont(new Font("Arial",Font.BOLD,16));
-            add(signIn);
-            signIn.addActionListener(this);
+            deposit = new JButton("Cash deposit");
+            deposit.setBounds(510,285,220,40);
+            deposit.setFont(new Font("Arial",Font.PLAIN,20));
+            deposit.setBackground(Color.blue);
+            deposit.setForeground(Color.white);
+            add(deposit);
+            deposit.addActionListener(this);
 
-            clear = new JButton("Clear");  // creates a button
-            clear.setBounds(390,285,80,40);
-            clear.setBackground(Color.BLUE);
-            clear.setForeground(Color.WHITE);
-            clear.setFont(new Font("Arial",Font.BOLD,16));
-            add(clear);
-            clear.addActionListener(this);
+            inquiry = new JButton("Balance inquiry");
+            inquiry.setBounds(50,365,220,40);
+            inquiry.setFont(new Font("Arial",Font.PLAIN,20));
+            inquiry.setBackground(Color.blue);
+            inquiry.setForeground(Color.white);
+            add(inquiry);
+            inquiry.addActionListener(this);
 
-            signUp = new JButton("Sign Up");  // creates a button
-            signUp.setBounds(490,285,100,40);
-            signUp.setBackground(Color.BLUE);
-            signUp.setForeground(Color.WHITE);
-            signUp.setFont(new Font("Arial",Font.BOLD,16));
-            add(signUp);
-            signUp.addActionListener(this);
+            pin = new JButton("Change PIN");
+            pin.setBounds(510,365,220,40);
+            pin.setFont(new Font("Arial",Font.PLAIN,20));
+            pin.setBackground(Color.blue);
+            pin.setForeground(Color.white);
+            add(pin);
+            pin.addActionListener(this);
+
+            exit = new JButton("Exit");
+            exit.setBounds(310,450,150,40);
+            exit.setFont(new Font("Arial",Font.PLAIN,20));
+            exit.setBackground(Color.blue);
+            exit.setForeground(Color.white);
+            add(exit);
+            exit.addActionListener(this);
             getContentPane().setBackground(Color.WHITE);  // changes the color of the frame
         }
         catch(Exception e)
@@ -84,20 +85,24 @@ public class Login extends JFrame implements ActionListener
     }
     public void actionPerformed(ActionEvent ae)
     {
-        if(ae.getSource()==signIn)
+        if(ae.getSource()==withdraw)
         {
-
+            setVisible(false);
+            new CashWithdraw().setVisible(true);  // goes to withdraw class
         }
-        else if(ae.getSource()==clear)
+        else if(ae.getSource()==deposit)
         {
-            cardTextField.setText("");
-            pinPasswordField.setText("");
+            setVisible(false);
+            new CashDeposit().setVisible(true);  // goes to withdraw class
         }
-        else if(ae.getSource()==signUp)
+        else if(ae.getSource()==pin)
         {
-            setVisible(false); // closes this page
-            SignUp signUpPage = new SignUp();
-            signUpPage.setVisible(true);  // goes to signUp page
+            setVisible(false);
+            new ChangePin().setVisible(true);  // goes to withdraw class
+        }
+        else if(ae.getSource()==exit)
+        {
+            dispose();
         }
     }
     public static void main(String [] args)
