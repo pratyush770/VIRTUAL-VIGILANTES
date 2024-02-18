@@ -3,7 +3,8 @@ package atm_simulator;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.*;
 
 public class ChangePin extends JFrame implements ActionListener
 {
@@ -11,6 +12,8 @@ public class ChangePin extends JFrame implements ActionListener
     JTextField cardText,oldPinText,newPinText;
     JButton change;
     ResultSet rs;
+    Scanner sc;
+    String cardNumber,oldPinNumber,newPinNumber;
     ChangePin()
     {
         try
@@ -18,39 +21,39 @@ public class ChangePin extends JFrame implements ActionListener
             setTitle("Automated Teller Machine");  // sets the title for the program
             setSize(800,400);
             setLayout(null);
-            setVisible(true);
+            setVisible(false);
             setLocation(550,325);
             getContentPane().setBackground(Color.white);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-            cardNo = new JLabel("Enter Card Number : ");
-            cardNo.setBounds(40,40,250,40);
+            cardNo = new JLabel("The entered card number is  : ");
+            cardNo.setBounds(40,40,450,40);
             cardNo.setFont(new Font("Arial",Font.BOLD,24));
             add(cardNo);
             cardText = new JTextField();
-            cardText.setBounds(300,40,430,40);
+            cardText.setBounds(400,40,330,40);
             cardText.setBackground(Color.WHITE);
             cardText.setForeground(Color.BLACK);
             cardText.setFont(new Font("Arial",Font.PLAIN,20));
             add(cardText);
 
-            oldPinNo = new JLabel("Enter Old PIN : ");
-            oldPinNo.setBounds(40,110,250,40);
+            oldPinNo = new JLabel("The entered old PIN is : ");
+            oldPinNo.setBounds(40,110,450,40);
             oldPinNo.setFont(new Font("Arial",Font.BOLD,24));
             add(oldPinNo);
             oldPinText = new JTextField();
             oldPinText.setBackground(Color.WHITE);
-            oldPinText.setBounds(300,110,430,40);
+            oldPinText.setBounds(400,110,330,40);
             oldPinText.setFont(new Font("Arial",Font.PLAIN,20));
             add(oldPinText);
 
-            newPinNo = new JLabel("Enter New PIN : ");
-            newPinNo.setBounds(40,180,250,40);
+            newPinNo = new JLabel("The entered new PIN is : ");
+            newPinNo.setBounds(40,180,450,40);
             newPinNo.setFont(new Font("Arial",Font.BOLD,24));
             add(newPinNo);
             newPinText = new JTextField();
             newPinText.setBackground(Color.WHITE);
-            newPinText.setBounds(300,180,430,40);
+            newPinText.setBounds(400,180,330,40);
             newPinText.setFont(new Font("Arial",Font.PLAIN,20));
             add(newPinText);
 
@@ -61,7 +64,16 @@ public class ChangePin extends JFrame implements ActionListener
             change.setBounds(580,250,150,40);
             add(change);
             change.addActionListener(this);
-
+            sc = new Scanner(System.in);
+            System.out.print("Enter the card number : ");
+            cardNumber = sc.next();
+            System.out.print("Enter the old PIN : ");
+            oldPinNumber = sc.next();
+            System.out.print("Enter the new PIN : ");
+            newPinNumber = sc.next();
+            cardText.setText(cardNumber);
+            oldPinText.setText(oldPinNumber);
+            newPinText.setText(newPinNumber);
         }
         catch (Exception e)
         {
@@ -118,6 +130,20 @@ public class ChangePin extends JFrame implements ActionListener
                 else {
                     // If no record with the provided PIN is found in the database
                     JOptionPane.showMessageDialog(null, "Invalid PIN");
+                    cardText.setText("");
+                    oldPinText.setText("");
+                    newPinText.setText("");
+                    setVisible(false);
+                    System.out.print("Enter the card number : ");
+                    cardNumber = sc.next();
+                    System.out.print("Enter the old PIN : ");
+                    oldPinNumber = sc.next();
+                    System.out.print("Enter the new PIN : ");
+                    newPinNumber = sc.next();
+                    cardText.setText(cardNumber);
+                    oldPinText.setText(oldPinNumber);
+                    newPinText.setText(newPinNumber);
+                    setVisible(true);
                 }
             }
             catch (Exception e2)
@@ -131,6 +157,7 @@ public class ChangePin extends JFrame implements ActionListener
     {
         SwingUtilities.invokeLater(()->{  // loads all the components on startup
             ChangePin ob = new ChangePin();
+            ob.setVisible(true);
         });
     }
 }

@@ -34,6 +34,7 @@ public class BalanceInquiry2 extends JFrame implements ActionListener
             totalText.setForeground(Color.BLACK);
             totalText.setFont(new Font("Arial",Font.PLAIN,20));
             totalText.setBounds(400,42,260,40);
+            totalText.setEditable(false);
             add(totalText);
 
             cardNo = new JLabel("Card Number : ");
@@ -45,6 +46,7 @@ public class BalanceInquiry2 extends JFrame implements ActionListener
             cardText.setForeground(Color.BLACK);
             cardText.setFont(new Font("Raleway",Font.PLAIN,20));
             cardText.setBounds(400,152,260,40);
+            cardText.setEditable(false);
             add(cardText);
 
             done = new JButton("Done");
