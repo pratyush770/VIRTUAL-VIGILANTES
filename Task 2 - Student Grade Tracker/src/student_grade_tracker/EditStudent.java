@@ -190,22 +190,7 @@ public class EditStudent extends JFrame implements ActionListener
                     c = new Conn();
                     String q = "UPDATE student SET name = '"+name+"' WHERE id = '"+id+"'";
                     c.s.executeUpdate(q);
-                    q = "SELECT * FROM student WHERE id = '"+id+"'";
-                    rs = c.s.executeQuery(q);
-                    if(rs.next())
-                    {
-                        sidText.setText(Integer.toString(rs.getInt(1)));
-                        snameText.setText(rs.getString(2));
-                        courseText.setText(rs.getString(3));
-                        mark1Text.setText(Integer.toString(rs.getInt(4)));
-                        mark2Text.setText(Integer.toString(rs.getInt(5)));
-                        mark3Text.setText(Integer.toString(rs.getInt(6)));
-                        mark4Text.setText(Integer.toString(rs.getInt(7)));
-                        mark5Text.setText(Integer.toString(rs.getInt(8)));
-                        avgText.setText(Integer.toString(rs.getInt(9)));
-                        gradeText.setText(rs.getString(10));
-                        setVisible(true);
-                    }
+                    displayData(id);
                     break;
                 case "course":
                 case "Course":
@@ -215,22 +200,7 @@ public class EditStudent extends JFrame implements ActionListener
                     c = new Conn();
                     q = "UPDATE student SET course = '"+scourse+"' WHERE id = '"+id+"'";
                     c.s.executeUpdate(q);
-                    q = "SELECT * FROM student WHERE id = '"+id+"'";
-                    rs = c.s.executeQuery(q);
-                    if(rs.next())
-                    {
-                        sidText.setText(Integer.toString(rs.getInt(1)));
-                        snameText.setText(rs.getString(2));
-                        courseText.setText(rs.getString(3));
-                        mark1Text.setText(Integer.toString(rs.getInt(4)));
-                        mark2Text.setText(Integer.toString(rs.getInt(5)));
-                        mark3Text.setText(Integer.toString(rs.getInt(6)));
-                        mark4Text.setText(Integer.toString(rs.getInt(7)));
-                        mark5Text.setText(Integer.toString(rs.getInt(8)));
-                        avgText.setText(Integer.toString(rs.getInt(9)));
-                        gradeText.setText(rs.getString(10));
-                        setVisible(true);
-                    }
+                    displayData(id);
                     break;
                 case "m1":
                 case "M1":
@@ -240,26 +210,7 @@ public class EditStudent extends JFrame implements ActionListener
                     c = new Conn();
                     q = "UPDATE student SET m1 = '"+m1+"' WHERE id = '"+id+"'";
                     c.s.executeUpdate(q);
-                    q = "SELECT * FROM student WHERE id = '"+id+"'";
-                    rs = c.s.executeQuery(q);
-                    if(rs.next())
-                    {
-                        sidText.setText(Integer.toString(rs.getInt(1)));
-                        snameText.setText(rs.getString(2));
-                        courseText.setText(rs.getString(3));
-                        mark1Text.setText(Integer.toString(rs.getInt(4)));
-                        mark2Text.setText(Integer.toString(rs.getInt(5)));
-                        mark3Text.setText(Integer.toString(rs.getInt(6)));
-                        mark4Text.setText(Integer.toString(rs.getInt(7)));
-                        mark5Text.setText(Integer.toString(rs.getInt(8)));
-                        avgText.setText(Integer.toString(rs.getInt(9)));
-                        gradeText.setText(rs.getString(10));
-                        repaint();
-                        // Validate and repaint the content pane
-                        getContentPane().validate();
-                        getContentPane().repaint();
-                        setVisible(true);
-                    }
+                    displayData(id);
                     break;
                 case "m2":
                 case "M2":
@@ -269,26 +220,7 @@ public class EditStudent extends JFrame implements ActionListener
                     c = new Conn();
                     q = "UPDATE student SET m2 = '"+m2+"' WHERE id = '"+id+"'";
                     c.s.executeUpdate(q);
-                    q = "SELECT * FROM student WHERE id = '"+id+"'";
-                    rs = c.s.executeQuery(q);
-                    if(rs.next())
-                    {
-                        sidText.setText(Integer.toString(rs.getInt(1)));
-                        snameText.setText(rs.getString(2));
-                        courseText.setText(rs.getString(3));
-                        mark1Text.setText(Integer.toString(rs.getInt(4)));
-                        mark2Text.setText(Integer.toString(rs.getInt(5)));
-                        mark3Text.setText(Integer.toString(rs.getInt(6)));
-                        mark4Text.setText(Integer.toString(rs.getInt(7)));
-                        mark5Text.setText(Integer.toString(rs.getInt(8)));
-                        avgText.setText(Integer.toString(rs.getInt(9)));
-                        gradeText.setText(rs.getString(10));
-                        repaint();
-                        // Validate and repaint the content pane
-                        getContentPane().validate();
-                        getContentPane().repaint();
-                        setVisible(true);
-                    }
+                    displayData(id);
                     break;
                 case "m3":
                 case "M3":
@@ -298,26 +230,7 @@ public class EditStudent extends JFrame implements ActionListener
                     c = new Conn();
                     q = "UPDATE student SET m3 = '"+m3+"' WHERE id = '"+id+"'";
                     c.s.executeUpdate(q);
-                    q = "SELECT * FROM student WHERE id = '"+id+"'";
-                    rs = c.s.executeQuery(q);
-                    if(rs.next())
-                    {
-                        sidText.setText(Integer.toString(rs.getInt(1)));
-                        snameText.setText(rs.getString(2));
-                        courseText.setText(rs.getString(3));
-                        mark1Text.setText(Integer.toString(rs.getInt(4)));
-                        mark2Text.setText(Integer.toString(rs.getInt(5)));
-                        mark3Text.setText(Integer.toString(rs.getInt(6)));
-                        mark4Text.setText(Integer.toString(rs.getInt(7)));
-                        mark5Text.setText(Integer.toString(rs.getInt(8)));
-                        avgText.setText(Integer.toString(rs.getInt(9)));
-                        gradeText.setText(rs.getString(10));
-                        repaint();
-                        // Validate and repaint the content pane
-                        getContentPane().validate();
-                        getContentPane().repaint();
-                        setVisible(true);
-                    }
+                    displayData(id);
                     break;
                 case "m4":
                 case "M4":
@@ -327,26 +240,7 @@ public class EditStudent extends JFrame implements ActionListener
                     c = new Conn();
                     q = "UPDATE student SET m4 = '"+m4+"' WHERE id = '"+id+"'";
                     c.s.executeUpdate(q);
-                    q = "SELECT * FROM student WHERE id = '"+id+"'";
-                    rs = c.s.executeQuery(q);
-                    if(rs.next())
-                    {
-                        sidText.setText(Integer.toString(rs.getInt(1)));
-                        snameText.setText(rs.getString(2));
-                        courseText.setText(rs.getString(3));
-                        mark1Text.setText(Integer.toString(rs.getInt(4)));
-                        mark2Text.setText(Integer.toString(rs.getInt(5)));
-                        mark3Text.setText(Integer.toString(rs.getInt(6)));
-                        mark4Text.setText(Integer.toString(rs.getInt(7)));
-                        mark5Text.setText(Integer.toString(rs.getInt(8)));
-                        avgText.setText(Integer.toString(rs.getInt(9)));
-                        gradeText.setText(rs.getString(10));
-                        repaint();
-                        // Validate and repaint the content pane
-                        getContentPane().validate();
-                        getContentPane().repaint();
-                        setVisible(true);
-                    }
+                    displayData(id);
                     break;
                 case "m5":
                 case "M5":
@@ -356,26 +250,7 @@ public class EditStudent extends JFrame implements ActionListener
                     c = new Conn();
                     q = "UPDATE student SET m5 = '"+m5+"' WHERE id = '"+id+"'";
                     c.s.executeUpdate(q);
-                    q = "SELECT * FROM student WHERE id = '"+id+"'";
-                    rs = c.s.executeQuery(q);
-                    if(rs.next())
-                    {
-                        sidText.setText(Integer.toString(rs.getInt(1)));
-                        snameText.setText(rs.getString(2));
-                        courseText.setText(rs.getString(3));
-                        mark1Text.setText(Integer.toString(rs.getInt(4)));
-                        mark2Text.setText(Integer.toString(rs.getInt(5)));
-                        mark3Text.setText(Integer.toString(rs.getInt(6)));
-                        mark4Text.setText(Integer.toString(rs.getInt(7)));
-                        mark5Text.setText(Integer.toString(rs.getInt(8)));
-                        avgText.setText(Integer.toString(rs.getInt(9)));
-                        gradeText.setText(rs.getString(10));
-                        repaint();
-                        // Validate and repaint the content pane
-                        getContentPane().validate();
-                        getContentPane().repaint();
-                        setVisible(true);
-                    }
+                    displayData(id);
                     break;
                 case "average":
                 case "Average":
@@ -386,26 +261,7 @@ public class EditStudent extends JFrame implements ActionListener
                     c = new Conn();
                     q = "UPDATE student SET avg = '"+avg+"' WHERE id = '"+id+"'";
                     c.s.executeUpdate(q);
-                    q = "SELECT * FROM student WHERE id = '"+id+"'";
-                    rs = c.s.executeQuery(q);
-                    if(rs.next())
-                    {
-                        sidText.setText(Integer.toString(rs.getInt(1)));
-                        snameText.setText(rs.getString(2));
-                        courseText.setText(rs.getString(3));
-                        mark1Text.setText(Integer.toString(rs.getInt(4)));
-                        mark2Text.setText(Integer.toString(rs.getInt(5)));
-                        mark3Text.setText(Integer.toString(rs.getInt(6)));
-                        mark4Text.setText(Integer.toString(rs.getInt(7)));
-                        mark5Text.setText(Integer.toString(rs.getInt(8)));
-                        avgText.setText(Integer.toString(rs.getInt(9)));
-                        gradeText.setText(rs.getString(10));
-                        repaint();
-                        // Validate and repaint the content pane
-                        getContentPane().validate();
-                        getContentPane().repaint();
-                        setVisible(true);
-                    }
+                    displayData(id);
                     break;
                 case "grade":
                 case "Grade":
@@ -415,23 +271,37 @@ public class EditStudent extends JFrame implements ActionListener
                     c = new Conn();
                     q = "UPDATE student SET grade = '"+grade+"' WHERE id = '"+id+"'";
                     c.s.executeUpdate(q);
-                    q = "SELECT * FROM student WHERE id = '"+id+"'";
-                    rs = c.s.executeQuery(q);
-                    if(rs.next())
-                    {
-                        sidText.setText(Integer.toString(rs.getInt(1)));
-                        snameText.setText(rs.getString(2));
-                        courseText.setText(rs.getString(3));
-                        mark1Text.setText(Integer.toString(rs.getInt(4)));
-                        mark2Text.setText(Integer.toString(rs.getInt(5)));
-                        mark3Text.setText(Integer.toString(rs.getInt(6)));
-                        mark4Text.setText(Integer.toString(rs.getInt(7)));
-                        mark5Text.setText(Integer.toString(rs.getInt(8)));
-                        avgText.setText(Integer.toString(rs.getInt(9)));
-                        gradeText.setText(rs.getString(10));
-                        setVisible(true);
-                    }
+                    displayData(id);
                     break;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    private void displayData(int id)
+    {
+        try
+        {
+            q = "SELECT * FROM student WHERE id = '"+id+"'";
+            rs = c.s.executeQuery(q);
+            if(rs.next())
+            {
+                sidText.setText(Integer.toString(rs.getInt(1)));
+                snameText.setText(rs.getString(2));
+                courseText.setText(rs.getString(3));
+                mark1Text.setText(Integer.toString(rs.getInt(4)));
+                mark2Text.setText(Integer.toString(rs.getInt(5)));
+                mark3Text.setText(Integer.toString(rs.getInt(6)));
+                mark4Text.setText(Integer.toString(rs.getInt(7)));
+                mark5Text.setText(Integer.toString(rs.getInt(8)));
+                avgText.setText(Integer.toString(rs.getInt(9)));
+                gradeText.setText(rs.getString(10));
+                repaint();
+                getContentPane().validate();
+                getContentPane().repaint();
+                setVisible(true);
             }
         }
         catch (Exception e)
