@@ -82,7 +82,7 @@ public class BalanceInquiry2 extends JFrame implements ActionListener
         {
             if (ae.getSource() == done) {
                 setVisible(false);
-                new Login().setVisible(true);
+                new Home().setVisible(true);
             }
         }
         catch (Exception e) {

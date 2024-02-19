@@ -134,7 +134,7 @@ public class ChangePin extends JFrame implements ActionListener
                     q = "UPDATE user SET pin = '" + newPin + "' WHERE card = '" + card + "'";
                     c.s.executeUpdate(q);
                     setVisible(false);
-                    new Login().setVisible(true);
+                    new Home().setVisible(true);
                 }
                 else
                 {

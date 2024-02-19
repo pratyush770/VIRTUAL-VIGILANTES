@@ -3,14 +3,14 @@ package atm_simulator;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class Login extends JFrame implements ActionListener
+public class Home extends JFrame implements ActionListener
 {
     // initialize all the components
     JButton withdraw,deposit,inquiry,pin,exit;
     JLabel l,text,select;
     ImageIcon i,i3;
     Image i2;
-    public Login()
+    public Home()
     {
         try
         {
@@ -113,6 +113,6 @@ public class Login extends JFrame implements ActionListener
     }
     public static void main(String [] args)
     {
-        Login ob = new Login();
+        Home ob = new Home();
     }
 }

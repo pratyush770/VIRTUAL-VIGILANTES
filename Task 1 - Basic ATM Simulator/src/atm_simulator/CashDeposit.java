@@ -116,7 +116,7 @@ public class CashDeposit extends JFrame implements ActionListener
                         c.s.executeUpdate(q);
                         JOptionPane.showMessageDialog(null, "Cash deposited successfully");
                         setVisible(false);
-                        new Login().setVisible(true);
+                        new Home().setVisible(true);
                     }
                 }
                 else
