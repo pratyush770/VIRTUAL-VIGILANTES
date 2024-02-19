@@ -22,6 +22,7 @@ public class BalanceInquiry2 extends JFrame implements ActionListener
             setLayout(null);
             setVisible(true);
             setLocation(550,325);
+            setResizable(false);
             getContentPane().setBackground(Color.white);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

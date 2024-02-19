@@ -32,6 +32,7 @@ public class CashWithdraw extends JFrame implements ActionListener
             setSize(800,400);
             setLayout(null);
             setLocation(550,325);
+            setResizable(false);
             getContentPane().setBackground(Color.white);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

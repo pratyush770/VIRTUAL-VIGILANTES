@@ -33,6 +33,7 @@ public class CashDeposit extends JFrame implements ActionListener
             setLayout(null);
             setVisible(false);
             setLocation(550,325);
+            setResizable(false);
             getContentPane().setBackground(Color.white);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

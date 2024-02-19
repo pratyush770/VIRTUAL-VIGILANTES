@@ -19,6 +19,7 @@ public class Login extends JFrame implements ActionListener
             setLayout(null);
             setVisible(true);  // makes the frame visible
             setLocation(550,220);  // opens the frame at the center of the screen
+            setResizable(false);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // closes the window and stops the program
             i = new ImageIcon(ClassLoader.getSystemResource("icons/logo.png"));  // loads the image
             i2 = i.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);  // adjusts the size of the image

@@ -38,22 +38,24 @@ public class AddStudent extends JFrame implements ActionListener
         mark4Text.setText(Integer.toString(m4));
         mark5Text.setText(Integer.toString(m5));
     }
+
     // initialize all the components
     JLabel sid,sname,course,mark1,mark2,mark3,mark4,mark5;
     JTextField sidText,snameText,courseText,mark1Text,mark2Text,mark3Text,mark4Text,mark5Text;
     JButton add;
     ResultSet rs;
     Scanner sc;
-    String name,scourse,q;
-    int id,m1,m2,m3,m4,m5;
+    String name,scourse,q,grade;
+    int id,m1,m2,m3,m4,m5,sum,avg;
     AddStudent()
     {
         try
         {
-            setTitle("Automated Teller Machine");  // sets the title for the program
+            setTitle("Student Grade Tracker");  // sets the title for the program
             setSize(800,740);
             setLayout(null);
             setVisible(false);
+            setResizable(false);
             setLocation(550,150);
             getContentPane().setBackground(Color.white);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -171,6 +173,39 @@ public class AddStudent extends JFrame implements ActionListener
         int m3 = Integer.parseInt(mark3Text.getText());
         int m4 = Integer.parseInt(mark4Text.getText());
         int m5 = Integer.parseInt(mark5Text.getText());
+        sum = m1+m2+m3+m4+m5;
+        avg = sum/5;
+        grade = "";
+        // grading
+        if(avg>=90)
+        {
+            grade = "O";
+        }
+        else if(avg>=80)
+        {
+            grade = "A";
+        }
+        else if(avg>=70)
+        {
+            grade = "B";
+        }
+        else if(avg>=60)
+        {
+            grade = "C";
+        }
+        else if(avg>=50)
+        {
+            grade = "D";
+        }
+        else if(avg>=35)
+        {
+            grade = "E";
+        }
+        else
+        {
+            grade = "F";
+        }
+
         // Validation
         if(m1>100)
         {
@@ -212,11 +247,11 @@ public class AddStudent extends JFrame implements ActionListener
             try
             {
                 Conn c = new Conn();
-                q = "INSERT INTO student VALUES('"+id+"','"+name+"','"+course+"','"+m1+"','"+m2+"','"+m3+"','"+m4+"','"+m5+"')";
+                q = "INSERT INTO student VALUES('"+id+"','"+name+"','"+course+"','"+m1+"','"+m2+"','"+m3+"','"+m4+"','"+m5+"','"+avg+"','"+grade+"')";
                 c.s.executeUpdate(q);
                 JOptionPane.showMessageDialog(null,"Added successfully");
                 setVisible(false);
-                new Login().setVisible(true);
+                new Home().setVisible(true);
             }
             catch (Exception e1)
             {

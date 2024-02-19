@@ -3,14 +3,14 @@ package student_grade_tracker;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class Login extends JFrame implements ActionListener
+public class Home extends JFrame implements ActionListener
 {
     // initialize all the components
     JButton add,edit,display,exit;
     JLabel l,text,select;
     ImageIcon i,i3;
     Image i2;
-    public Login()
+    public Home()
     {
         try
         {
@@ -19,6 +19,7 @@ public class Login extends JFrame implements ActionListener
             setLayout(null);
             setVisible(true);  // makes the frame visible
             setLocation(550,260);  // opens the frame at the center of the screen
+            setResizable(false);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // closes the window and stops the program
             i = new ImageIcon(ClassLoader.getSystemResource("icons/student.png"));  // loads the image
             i2 = i.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);  // adjusts the size of the image
@@ -81,17 +82,17 @@ public class Login extends JFrame implements ActionListener
         if(ae.getSource()==add)
         {
             setVisible(false);
-            new AddStudent().setVisible(true);  // goes to withdraw class
+            new AddStudent().setVisible(true);  // goes to add student class
         }
         else if(ae.getSource()==edit)
         {
-//            setVisible(false);
-//            new CashDeposit().setVisible(true);  // goes to deposit class
+            setVisible(false);
+            new EditStudent().setVisible(true);  // goes to edit student class
         }
         else if(ae.getSource()==display)
         {
-//            setVisible(false);
-//            new ChangePin().setVisible(true);  // goes to change pin class
+            setVisible(false);
+            new DisplayGrades().setVisible(true);  // goes to display grades class
         }
         else if(ae.getSource()==exit)
         {
@@ -100,6 +101,6 @@ public class Login extends JFrame implements ActionListener
     }
     public static void main(String [] args)
     {
-        Login ob = new Login();
+        Home ob = new Home();
     }
 }
