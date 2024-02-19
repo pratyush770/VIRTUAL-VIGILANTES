@@ -8,6 +8,19 @@ import java.util.*;
 
 public class ChangePin extends JFrame implements ActionListener
 {
+    private void userInput()
+    {
+        sc = new Scanner(System.in);
+        System.out.print("Enter the card number : ");
+        cardNumber = sc.next();
+        System.out.print("Enter the old PIN : ");
+        oldPinNumber = sc.next();
+        System.out.print("Enter the new PIN : ");
+        newPinNumber = sc.next();
+        cardText.setText(cardNumber);
+        oldPinText.setText(oldPinNumber);
+        newPinText.setText(newPinNumber);
+    }
     JLabel cardNo,oldPinNo,newPinNo;
     JTextField cardText,oldPinText,newPinText;
     JButton change;
@@ -64,16 +77,7 @@ public class ChangePin extends JFrame implements ActionListener
             change.setBounds(580,250,150,40);
             add(change);
             change.addActionListener(this);
-            sc = new Scanner(System.in);
-            System.out.print("Enter the card number : ");
-            cardNumber = sc.next();
-            System.out.print("Enter the old PIN : ");
-            oldPinNumber = sc.next();
-            System.out.print("Enter the new PIN : ");
-            newPinNumber = sc.next();
-            cardText.setText(cardNumber);
-            oldPinText.setText(oldPinNumber);
-            newPinText.setText(newPinNumber);
+            userInput();
         }
         catch (Exception e)
         {
@@ -86,29 +90,33 @@ public class ChangePin extends JFrame implements ActionListener
         String card = cardText.getText();
         String oldPin = oldPinText.getText();
         String newPin = newPinText.getText();
-        if(card.isEmpty())
-        {
-            JOptionPane.showMessageDialog(null,"Card Number is required");
-        }
-        else if(card.length() != 16)
+        if(card.length() != 16)
         {
             JOptionPane.showMessageDialog(null,"Card number should be of 16 digits");
-        }
-        else if(oldPin.isEmpty())
-        {
-            JOptionPane.showMessageDialog(null,"PIN is required");
+            setVisible(false);
+            userInput();
+            setVisible(true);
         }
         else if(oldPin.length() != 4)
         {
             JOptionPane.showMessageDialog(null,"PIN should be of 4 digits");
-        }
-        else if(newPin.isEmpty())
-        {
-            JOptionPane.showMessageDialog(null,"PIN is required");
+            setVisible(false);
+            userInput();
+            setVisible(true);
         }
         else if(newPin.length() != 4)
         {
             JOptionPane.showMessageDialog(null,"PIN should be of 4 digits");
+            setVisible(false);
+            userInput();
+            setVisible(true);
+        }
+        else if(oldPin.equals(newPin))
+        {
+            JOptionPane.showMessageDialog(null,"PIN should not match");
+            setVisible(false);
+            userInput();
+            setVisible(true);
         }
         else
         {
@@ -127,22 +135,12 @@ public class ChangePin extends JFrame implements ActionListener
                     setVisible(false);
                     new Login().setVisible(true);
                 }
-                else {
+                else
+                {
                     // If no record with the provided PIN is found in the database
                     JOptionPane.showMessageDialog(null, "Invalid PIN");
-                    cardText.setText("");
-                    oldPinText.setText("");
-                    newPinText.setText("");
                     setVisible(false);
-                    System.out.print("Enter the card number : ");
-                    cardNumber = sc.next();
-                    System.out.print("Enter the old PIN : ");
-                    oldPinNumber = sc.next();
-                    System.out.print("Enter the new PIN : ");
-                    newPinNumber = sc.next();
-                    cardText.setText(cardNumber);
-                    oldPinText.setText(oldPinNumber);
-                    newPinText.setText(newPinNumber);
+                    userInput();
                     setVisible(true);
                 }
             }

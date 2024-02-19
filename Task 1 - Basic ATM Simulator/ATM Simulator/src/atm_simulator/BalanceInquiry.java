@@ -8,6 +8,13 @@ import java.util.*;
 
 public class BalanceInquiry extends JFrame implements ActionListener
 {
+    private void userInput()
+    {
+        sc = new Scanner(System.in);
+        System.out.print("Enter the PIN : ");
+        pinNo = sc.next();
+        pinText.setText(pinNo);
+    }
     JLabel pin;
     JTextField pinText;
     JButton check;
@@ -44,10 +51,7 @@ public class BalanceInquiry extends JFrame implements ActionListener
             add(check);
             check.addActionListener(this);
             setVisible(false);
-            sc = new Scanner(System.in);
-            System.out.print("Enter the PIN : ");
-            pinNo = sc.next();
-            pinText.setText(pinNo);
+            userInput();
         }
         catch (Exception e)
         {
@@ -61,13 +65,12 @@ public class BalanceInquiry extends JFrame implements ActionListener
         try
         {
             String pin = pinText.getText();
-            if(pin.isEmpty())
-            {
-                JOptionPane.showMessageDialog(null,"PIN is required");
-            }
-            else if(pin.length() != 4)
+            if(pin.length() != 4)
             {
                 JOptionPane.showMessageDialog(null,"PIN should be of 4 digits");
+                setVisible(false);
+                userInput();
+                setVisible(true);
             }
             else if(ae.getSource()==check)
             {
@@ -82,11 +85,8 @@ public class BalanceInquiry extends JFrame implements ActionListener
                         } else {
                             // If no record with the provided PIN is found in the database
                             JOptionPane.showMessageDialog(null, "Invalid PIN");
-                            pinText.setText("");
                             setVisible(false);
-                            System.out.print("Enter the PIN : ");
-                            pinNo = sc.next();
-                            pinText.setText(pinNo);
+                            userInput();
                             setVisible(true);
                         }
                 }

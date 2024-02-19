@@ -8,6 +8,16 @@ import java.util.*;
 
 public class CashWithdraw extends JFrame implements ActionListener
 {
+    private void userInput()
+    {
+        sc = new Scanner(System.in);
+        System.out.print("Enter the amount to withdraw : ");
+        enteredAmount = sc.next();
+        System.out.print("Enter the PIN : ");
+        enteredPin = sc.next();
+        amountText.setText(enteredAmount);
+        pinText.setText(enteredPin);
+    }
     JLabel amount,denomination,pinNo;
     JTextField amountText,pinText;
     JButton withdraw;
@@ -61,14 +71,7 @@ public class CashWithdraw extends JFrame implements ActionListener
             add(withdraw);
             withdraw.addActionListener(this);
             setVisible(false);
-            sc = new Scanner(System.in);
-            System.out.print("Enter the amount to withdraw : ");
-            enteredAmount = sc.next();
-            System.out.print("Enter the PIN : ");
-            enteredPin = sc.next();
-            amountText.setText(enteredAmount);
-            pinText.setText(enteredPin);
-
+            userInput();
         }
         catch (Exception e)
         {
@@ -80,17 +83,12 @@ public class CashWithdraw extends JFrame implements ActionListener
     {
         String amount = amountText.getText();
         String pin = pinText.getText();
-        if(amount.isEmpty())
-        {
-            JOptionPane.showMessageDialog(null,"Amount is required");
-        }
-        else if(pin.isEmpty())
-        {
-            JOptionPane.showMessageDialog(null,"PIN is required");
-        }
-        else if(pin.length() != 4)
+        if(pin.length() != 4)
         {
             JOptionPane.showMessageDialog(null,"PIN should be of 4 digits");
+            setVisible(false);
+            userInput();
+            setVisible(true);
         }
         else
         {
@@ -103,31 +101,36 @@ public class CashWithdraw extends JFrame implements ActionListener
                     // If there is at least one record with the provided PIN in the database
                     int withdrawAmount = rs.getInt("amount");
                     int enteredAmount = Integer.parseInt(amountText.getText());
-                    if(enteredAmount%500!=0)
+                    if(enteredAmount>withdrawAmount)
+                    {
+                        JOptionPane.showMessageDialog(null,"Insufficient funds");
+                        setVisible(false);
+                        userInput();
+                        setVisible(true);
+                    }
+                    else if(enteredAmount%500!=0)
                     {
                         JOptionPane.showMessageDialog(null,"Please enter value represented by 500 denomination notes");
-                        amountText.setText("");
-                        pinText.setText("");
-                        return;
+                        setVisible(false);
+                        userInput();
+                        setVisible(true);
                     }
-                    withdrawAmount = withdrawAmount - enteredAmount;
-                    q = "UPDATE user SET amount = '"+withdrawAmount+"'";
-                    c.s.executeUpdate(q);
-                    JOptionPane.showMessageDialog(null, "Cash Withdrawn successfully");
-                    setVisible(false);
-                    new Login().setVisible(true);
-                } else {
+                    else
+                    {
+                        withdrawAmount = withdrawAmount - enteredAmount;
+                        q = "UPDATE user SET amount = '"+withdrawAmount+"'";
+                        c.s.executeUpdate(q);
+                        JOptionPane.showMessageDialog(null, "Cash Withdrawn successfully");
+                        setVisible(false);
+                        new Login().setVisible(true);
+                    }
+                }
+                else
+                {
                     // If no record with the provided PIN is found in the database
                     JOptionPane.showMessageDialog(null, "Invalid PIN");
-                    amountText.setText("");
-                    pinText.setText("");
                     setVisible(false);
-                    System.out.print("Enter the amount to withdraw : ");
-                    enteredAmount = sc.next();
-                    System.out.print("Enter the PIN : ");
-                    enteredPin = sc.next();
-                    amountText.setText(enteredAmount);
-                    pinText.setText(enteredPin);
+                    userInput();
                     setVisible(true);
                 }
             }

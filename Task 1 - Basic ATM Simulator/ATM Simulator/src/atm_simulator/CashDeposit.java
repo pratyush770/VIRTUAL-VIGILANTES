@@ -8,6 +8,16 @@ import java.util.*;
 
 public class CashDeposit extends JFrame implements ActionListener
 {
+    private void userInput()
+    {
+        sc = new Scanner(System.in);
+        System.out.print("Enter the amount to deposit : ");
+        enteredAmount = sc.next();
+        System.out.print("Enter the PIN : ");
+        enteredPin = sc.next();
+        amountText.setText(enteredAmount);
+        pinText.setText(enteredPin);
+    }
     JLabel amount,denomination,pinNo;
     JTextField amountText,pinText;
     JButton deposit;
@@ -61,13 +71,7 @@ public class CashDeposit extends JFrame implements ActionListener
             deposit.setBounds(580,260,150,40);
             add(deposit);
             deposit.addActionListener(this);
-            sc = new Scanner(System.in);
-            System.out.print("Enter the amount to deposit : ");
-            enteredAmount = sc.next();
-            System.out.print("Enter the PIN : ");
-            enteredPin = sc.next();
-            amountText.setText(enteredAmount);
-            pinText.setText(enteredPin);
+            userInput();
         }
         catch (Exception e)
         {
@@ -79,17 +83,12 @@ public class CashDeposit extends JFrame implements ActionListener
     {
         String amount = amountText.getText();
         String pin = pinText.getText();
-        if(amount.isEmpty())
-        {
-            JOptionPane.showMessageDialog(null,"Amount is required");
-        }
-        else if(pin.isEmpty())
-        {
-            JOptionPane.showMessageDialog(null,"PIN is required");
-        }
-        else if(pin.length() != 4)
+        if(pin.length() != 4)
         {
             JOptionPane.showMessageDialog(null,"PIN should be of 4 digits");
+            setVisible(false);
+            userInput();
+            setVisible(true);
         }
         else
         {
@@ -105,28 +104,26 @@ public class CashDeposit extends JFrame implements ActionListener
                     if(enteredAmount%500!=0)
                     {
                         JOptionPane.showMessageDialog(null,"Please enter value represented by 500 denomination notes");
-                        amountText.setText("");
-                        pinText.setText("");
-                        return;
+                        setVisible(false);
+                        userInput();
+                        setVisible(true);
                     }
-                    depositAmount = depositAmount + enteredAmount;
-                    q = "UPDATE user SET amount = '"+depositAmount+"'";
-                    c.s.executeUpdate(q);
-                    JOptionPane.showMessageDialog(null, "Cash deposited successfully");
-                    setVisible(false);
-                    new Login().setVisible(true);
-                } else {
+                    else
+                    {
+                        depositAmount = depositAmount + enteredAmount;
+                        q = "UPDATE user SET amount = '"+depositAmount+"'";
+                        c.s.executeUpdate(q);
+                        JOptionPane.showMessageDialog(null, "Cash deposited successfully");
+                        setVisible(false);
+                        new Login().setVisible(true);
+                    }
+                }
+                else
+                {
                     // If no record with the provided PIN is found in the database
                     JOptionPane.showMessageDialog(null, "Invalid PIN");
-                    amountText.setText("");
-                    pinText.setText("");
                     setVisible(false);
-                    System.out.print("Enter the amount to deposit : ");
-                    enteredAmount = sc.next();
-                    System.out.print("Enter the PIN : ");
-                    enteredPin = sc.next();
-                    amountText.setText(enteredAmount);
-                    pinText.setText(enteredPin);
+                    userInput();
                     setVisible(true);
                 }
             }
