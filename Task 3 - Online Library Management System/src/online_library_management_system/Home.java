@@ -3,10 +3,9 @@ import java.sql.*;
 import java.util.*;
 public class Home
 {
-    static int ch,price,n,id;
+    static int ch,price,id;
     static Scanner sc;
-    static String bname,aname,genre,q,enteredColumn;
-    static ResultSet rs;
+    static String bname,aname,genre;
     public static void main(String[] args)
     {
         System.out.println("\tWelcome to online library management system");
@@ -19,7 +18,7 @@ public class Home
             System.out.println("4) Borrow book");
             System.out.println("5) View borrowing history");
             System.out.println("6) View book catalog");
-            System.out.println("7) Check books");
+            System.out.println("7) Check book");
             System.out.println("8) Exit");
             System.out.println();
             sc = new Scanner(System.in);
@@ -55,7 +54,16 @@ public class Home
                     System.out.println();
                     break;
                 case 4:
+                    System.out.print("Enter the name of the book you want to borrow : ");
+                    sc.nextLine();
+                    bname = sc.nextLine();
+                    new BorrowBook().borrowBook(bname);
+                    System.out.println();
+                    break;
                 case 5:
+                    new BorrowBookHistory().borrowBookHistory();
+                    System.out.println();
+                    break;
                 case 6:
                     new BookCatalog().viewBooks();
                     System.out.println();
