@@ -185,6 +185,7 @@ public class EditStudent extends JFrame implements ActionListener
                 case "name":
                 case "Name":
                 case "NAME":
+                    // for editing student name
                     System.out.print("Enter the name you want to update : ");
                     name = sc.nextLine();
                     c = new Conn();
@@ -195,6 +196,7 @@ public class EditStudent extends JFrame implements ActionListener
                 case "course":
                 case "Course":
                 case "COURSE":
+                    // for editing student course
                     System.out.print("Enter the course of the student you want to update : ");
                     scourse = sc.nextLine();
                     c = new Conn();
@@ -204,6 +206,7 @@ public class EditStudent extends JFrame implements ActionListener
                     break;
                 case "m1":
                 case "M1":
+                    // for editing marks of 1st subject
                     System.out.print("Enter the marks of 1st subject you want to update : ");
                     m1 = sc.nextInt();
                     sc.nextLine();
@@ -214,6 +217,7 @@ public class EditStudent extends JFrame implements ActionListener
                     break;
                 case "m2":
                 case "M2":
+                    // for editing marks of 2nd subject
                     System.out.print("Enter the marks of 2nd subject you want to update : ");
                     m2 = sc.nextInt();
                     sc.nextLine();
@@ -224,6 +228,7 @@ public class EditStudent extends JFrame implements ActionListener
                     break;
                 case "m3":
                 case "M3":
+                    // for editing marks of 3rd subject
                     System.out.print("Enter the marks of 3rd subject you want to update : ");
                     m3 = sc.nextInt();
                     sc.nextLine();
@@ -234,6 +239,7 @@ public class EditStudent extends JFrame implements ActionListener
                     break;
                 case "m4":
                 case "M4":
+                    // for editing marks of 4th subject
                     System.out.print("Enter the marks of 4th subject you want to update : ");
                     m4 = sc.nextInt();
                     sc.nextLine();
@@ -244,6 +250,7 @@ public class EditStudent extends JFrame implements ActionListener
                     break;
                 case "m5":
                 case "M5":
+                    // for editing marks of 5th subject
                     System.out.print("Enter the marks of 5th subject you want to update : ");
                     m5 = sc.nextInt();
                     sc.nextLine();
@@ -255,6 +262,7 @@ public class EditStudent extends JFrame implements ActionListener
                 case "average":
                 case "Average":
                 case "AVERAGE":
+                    // for editing average marks of the student
                     System.out.print("Enter the average of the student you want to update : ");
                     avg = sc.nextInt();
                     sc.nextLine();
@@ -266,6 +274,7 @@ public class EditStudent extends JFrame implements ActionListener
                 case "grade":
                 case "Grade":
                 case "GRADE":
+                    // for editing grade of the student
                     System.out.print("Enter the grade of the student you want to update : ");
                     grade = sc.nextLine();
                     c = new Conn();

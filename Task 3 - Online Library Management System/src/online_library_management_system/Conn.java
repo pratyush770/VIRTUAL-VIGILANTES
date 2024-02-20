@@ -1,7 +1,6 @@
-package student_grade_tracker;
+package online_library_management_system;
 
 import java.sql.*;
-
 public class Conn
 {
     Connection c;
@@ -12,7 +11,7 @@ public class Conn
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");  // for loading the driver
-            url = "jdbc:mysql://localhost:3307/studentdatabase";  // url of the database
+            url = "jdbc:mysql://localhost:3307/librarydb";  // url of the database
             uname = "root";  // username is always root
             pwd = "matsumoto";  // password of the database
             c = DriverManager.getConnection(url,uname,pwd);
