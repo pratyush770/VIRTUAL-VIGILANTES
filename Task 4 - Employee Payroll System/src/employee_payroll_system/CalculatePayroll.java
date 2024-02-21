@@ -18,7 +18,6 @@ class EmployeeDetails extends Employee
     int fullTimeEmpDeduction = 2000;
     int partTimeEmpDeduction = 1000;
     int totalAmount = 0;
-    int payRoll;
     public EmployeeDetails(int id,String ename,String type,int sal)
     {
         super(id,ename,type,sal);
