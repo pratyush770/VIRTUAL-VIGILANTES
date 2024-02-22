@@ -18,6 +18,8 @@ class EmployeeDetails extends Employee
     int fullTimeEmpDeduction = 2000;
     int partTimeEmpDeduction = 1000;
     int totalAmount = 0;
+    int bonus = 0;
+    int deduction = 0;
     public EmployeeDetails(int id,String ename,String type,int sal)
     {
         super(id,ename,type,sal);
@@ -26,14 +28,22 @@ class EmployeeDetails extends Employee
     {
         this.type = type;
         this.sal = sal;
-        if(type.equalsIgnoreCase("FULL TIME"))  // for full time employee
+        if(type.equalsIgnoreCase("FULL-TIME"))  // for full time employee
         {
+            bonus = fullTimeEmpBonus;
+            deduction = fullTimeEmpDeduction;
             totalAmount = sal + fullTimeEmpBonus - fullTimeEmpDeduction;
+            System.out.println("The bonus of the employee is : " + fullTimeEmpBonus);
+            System.out.println("The deduction of the employee is : " + fullTimeEmpDeduction);
             System.out.println("The payroll of the employee is : " + totalAmount);
         }
-        else if(type.equalsIgnoreCase("PART TIME"))  // for part-time employee
+        else if(type.equalsIgnoreCase("PART-TIME"))  // for part-time employee
         {
+            bonus = partTimeEmpBonus;
+            deduction = partTimeEmpDeduction;
             totalAmount = sal + partTimeEmpBonus - partTimeEmpDeduction;
+            System.out.println("The bonus of the employee is : " + partTimeEmpBonus);
+            System.out.println("The deduction of the employee is : " + partTimeEmpDeduction);
             System.out.println("The payroll of the employee is : " + totalAmount);
         }
     }

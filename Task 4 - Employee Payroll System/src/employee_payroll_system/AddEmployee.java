@@ -9,21 +9,21 @@ import java.io.FileWriter;
 public class AddEmployee extends JFrame implements ActionListener
 {
     // initialize all the components
-    JLabel eid,ename,type,sal,payRoll;
-    JTextField eidText,enameText,salText,payRollText;
+    JLabel eid,ename,type,sal,bonus,deduction,payRoll;
+    JTextField eidText,enameText,salText,bonusText,deductionText,payRollText;
     JButton add;
     JComboBox typeText;
-    String typeName[] = {"Full Time","Part Time"};
+    String typeName[] = {"Full-Time","Part-Time"};
     AddEmployee()
     {
         try
         {
             setTitle("Employee Payroll System");  // sets the title for the program
-            setSize(800,520);
+            setSize(800,670);
             setLayout(null);
             setVisible(true);
             setResizable(false);
-            setLocation(550,260);
+            setLocation(550,150);
             getContentPane().setBackground(Color.white);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,12 +71,37 @@ public class AddEmployee extends JFrame implements ActionListener
             salText.setForeground(Color.BLACK);
             add(salText);
 
+
+            bonus = new JLabel("The bonus of the employee is : ");
+            bonus.setBounds(45,330,600,40);
+            bonus.setFont(new Font("Raleway",Font.BOLD,26));
+            add(bonus);
+            bonusText = new JTextField();
+            bonusText.setBounds(485,330,255,40);
+            bonusText.setFont(new Font("Arial",Font.PLAIN,20));
+            bonusText.setBackground(Color.WHITE);
+            bonusText.setForeground(Color.BLACK);
+            bonusText.setEditable(false);
+            add(bonusText);
+
+            deduction = new JLabel("The deduction of the employee is : ");
+            deduction.setBounds(45,400,600,40);
+            deduction.setFont(new Font("Raleway",Font.BOLD,26));
+            add(deduction);
+            deductionText = new JTextField();
+            deductionText.setBounds(485,400,255,40);
+            deductionText.setFont(new Font("Arial",Font.PLAIN,20));
+            deductionText.setBackground(Color.WHITE);
+            deductionText.setForeground(Color.BLACK);
+            deductionText.setEditable(false);
+            add(deductionText);
+
             payRoll = new JLabel("The payroll of the employee is : ");
-            payRoll.setBounds(45,330,600,40);
+            payRoll.setBounds(45,470,600,40);
             payRoll.setFont(new Font("Raleway",Font.BOLD,26));
             add(payRoll);
             payRollText = new JTextField();
-            payRollText.setBounds(485,330,255,40);
+            payRollText.setBounds(485,470,255,40);
             payRollText.setFont(new Font("Arial",Font.PLAIN,20));
             payRollText.setBackground(Color.WHITE);
             payRollText.setForeground(Color.BLACK);
@@ -87,7 +112,7 @@ public class AddEmployee extends JFrame implements ActionListener
             add.setBackground(Color.BLACK);
             add.setForeground(Color.WHITE);
             add.setFont(new Font("Arial",Font.PLAIN,20));
-            add.setBounds(560,400,180,40);
+            add.setBounds(560,540,180,40);
             add(add);
             add.addActionListener(this);
 
@@ -106,7 +131,11 @@ public class AddEmployee extends JFrame implements ActionListener
         int sal = Integer.parseInt(salText.getText());
         EmployeeDetails ob = new EmployeeDetails(id,ename,type,sal);
         ob.calculatePayroll(type,sal);  // calculates payRoll
+        bonusText.setText(String.valueOf(ob.bonus));
+        deductionText.setText(String.valueOf(ob.deduction));
         payRollText.setText(String.valueOf(ob.totalAmount));
+        String bonus = bonusText.getText();
+        String deduction = deductionText.getText();
         String payRoll = payRollText.getText();
         if(ae.getSource()==add)
         {
@@ -114,7 +143,7 @@ public class AddEmployee extends JFrame implements ActionListener
             {
                 FileWriter fw = new FileWriter("empdata.txt",true);
                 BufferedWriter bw = new BufferedWriter(fw);
-                bw.write(id + " " + ename + " " + type + " " + sal + " " + payRoll);
+                bw.write(id + " " + ename + " " + type + " " + sal + " " + bonus+ " " + deduction + " " + payRoll);
                 bw.newLine();
                 JOptionPane.showMessageDialog(null,"Added successfully");
                 bw.close();
