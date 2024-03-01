@@ -1,6 +1,7 @@
 This repository contains the tasks performed by me during my internship with VIRTUAL VIGILANTES using Java Programming.
 
 Task 1 : Basic ATM Simulator 
+
 The task was to build a basic ATM Simulator with operations like cash withdrawal, deposit, balance inquiry and change PIN.
 Languages used : Java and MySQL
 
